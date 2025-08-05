@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMTDA Infotech Pvt Ltd - Vintage Excellence in Technology</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-brown: #5D4037;
+            --cream: #FFFDFA;
+            --burgundy: #6D4C41;
+            --forest-green: #4E6E5D;
+            --vintage-blue: #7A9CC6;
+            --warm-beige: #F8F4E9;
+            --charcoal: #3E4A4F;
+            --copper: #B87333;
+            --antique-white: #FAF6F0;
+            --pale-blue: #E8F0F7;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            line-height: 1.8;
+            background: var(--warm-beige);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+
+        /* Subtle Texture Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(93, 64, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(78, 110, 93, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--forest-green) 100%);
+            padding: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--primary-gold);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            font-weight: bold;
+        }
+
+        .logo-text {
+            color: var(--antique-white);
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 1.5rem 1.5rem;
+            color: var(--antique-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--primary-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::before {
+            width: 80%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Dropdown Menus */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--charcoal);
+            min-width: 280px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-gold);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--antique-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: var(--primary-gold);
+            color: var(--charcoal);
+            padding-left: 2rem;
+        }
+
+        .dropdown-item i {
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--charcoal) 0%, var(--forest-green) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="vintage-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23D4AF37" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23vintage-pattern)"/></svg>');
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--charcoal);
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--antique-white);
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-style: italic;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--cream);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.1s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-gold);
+            color: var(--charcoal);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary-gold);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--antique-white);
+            border: 2px solid var(--antique-white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--antique-white);
+            color: var(--charcoal);
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--charcoal);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--deep-brown);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.8;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--antique-white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            border: 1px solid var(--primary-gold);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: var(--copper);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--forest-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--antique-white);
+        }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--charcoal);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--forest-green);
+            font-weight: bold;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-item {
+            background: var(--charcoal);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .portfolio-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--vintage-blue), var(--forest-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--antique-white);
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h4 {
+            color: var(--primary-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-content p {
+            color: var(--antique-white);
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Technologies Section */
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-category {
+            background: var(--pale-blue);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--primary-gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .tech-category h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--deep-brown);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: var(--forest-green);
+            color: var(--antique-white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: var(--antique-white);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--primary-gold);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--forest-green);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--antique-white);
+        }
+
+        .member-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--deep-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: var(--forest-green);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: var(--charcoal);
+            padding: 3rem;
+            border-radius: 12px;
+            color: var(--antique-white);
+        }
+
+        .contact-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--forest-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--antique-white);
+        }
+
+        .contact-form {
+            background: var(--antique-white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--deep-brown);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--cream);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal);
+            color: var(--antique-white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--antique-white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--cream);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo-icon">IT</div>
+                <div class="logo-text">
+                    <h1>IMTDA Infotech</h1>
+                    <p>Est. Excellence Since Foundation</p>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Services</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item"><i class="fas fa-cogs"></i>Service Solutions</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-rocket"></i>Product Development</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-graduation-cap"></i>EduTech Programs</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-tools"></i>Custom Solutions</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#technologies" class="nav-link">Technologies</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item"><i class="fas fa-microchip"></i>IoT & VLSI</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-brain"></i>AI & Machine Learning</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-network-wired"></i>Networking</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-cloud"></i>Cloud Computing</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-mobile-alt"></i>Mobile Development</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#team" class="nav-link">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-item"><i class="fas fa-history"></i>Our Story</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-award"></i>Achievements</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-handshake"></i>Partners</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-certificate"></i>Certifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Premium Technology Solutions</div>
+            <h1>IMTDA Infotech</h1>
+            <div class="hero-subtitle">Private Limited</div>
+            <p>Crafting digital excellence with vintage precision. Where traditional values meet cutting-edge innovation to deliver exceptional technology solutions.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i>
+                    Explore Services
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i>
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section fade-in">
+        <div class="section-header">
+            <div class="section-badge">Our Expertise</div>
+            <h2 class="section-title">Professional Services</h2>
+            <p class="section-description">Comprehensive technology solutions tailored to your business needs with decades of combined expertise.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Service-Based Solutions</h3>
+                <p>Complete IT infrastructure management and support services designed to keep your business running smoothly.</p>
+                <ul class="service-features">
+                    <li>24/7 Technical Support</li>
+                    <li>Infrastructure Management</li>
+                    <li>System Maintenance</li>
+                    <li>Performance Optimization</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Product Development</h3>
+                <p>End-to-end product development from conceptualization to deployment using cutting-edge technologies.</p>
+                <ul class="service-features">
+                    <li>Custom Software Development</li>
+                    <li>Mobile Applications</li>
+                    <li>Web Platforms</li>
+                    <li>Quality Assurance</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>EduTech Solutions</h3>
+                <p>Educational technology programs including internships, professional courses, and skill development initiatives.</p>
+                <ul class="service-features">
+                    <li>Professional Internships</li>
+                    <li>Industry Courses</li>
+                    <li>Skill Certifications</li>
+                    <li>Career Guidance</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="technologies" class="section fade-in">
+        <div class="section-header">
+            <div class="section-badge">Technology Stack</div>
+            <h2 class="section-title">Our Technologies</h2>
+            <p class="section-description">We work with the latest and most reliable technologies across multiple domains.</p>
+        </div>
+        <div class="tech-categories">
+            <div class="tech-category">
+                <h4><i class="fas fa-microchip"></i> Hardware & Embedded</h4>
+                <div class="tech-list">
+                    <span class="tech-tag">IoT</span>
+                    <span class="tech-tag">VLSI</span>
+                    <span class="tech-tag">Arduino</span>
+                    <span class="tech-tag">Raspberry Pi</span>
+                    <span class="tech-tag">Sensors</span>
+                    <span class="tech-tag">PCB Design</span>
+                    <span class="tech-tag">Embedded C</span>
+                    <span class="tech-tag">RTOS</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4><i class="fas fa-brain"></i> AI & Data Science</h4>
+                <div class="tech-list">
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Deep Learning</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">PyTorch</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Data Analytics</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4><i class="fas fa-code"></i> Web Development</h4>
+                <div class="tech-list">
+                    <span class="tech-tag">HTML5/CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Angular</span>
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Laravel</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4><i class="fas fa-mobile-alt"></i> Mobile Development</h4>
+                <div class="tech-list">
+                    <span class="tech-tag">Android</span>
+                    <span class="tech-tag">iOS</span>
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Kotlin</span>
+                    <span class="tech-tag">Swift</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4><i class="fas fa-network-wired"></i> Networking</h4>
+                <div class="tech-list">
+                    <span class="tech-tag">CCNA</span>
+                    <span class="tech-tag">CCNP</span>
+                    <span class="tech-tag">Firewalls</span>
+                    <span class="tech-tag">VPN</span>
+                    <span class="tech-tag">SDN</span>
+                    <span class="tech-tag">Wireless</span>
+                </div>
+            </div>
+            <div class="tech-category">
+                <h4><i class="fas fa-cloud"></i> Cloud & DevOps</h4>
+                <div class="tech-list">
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Azure</span>
+                    <span class="tech-tag">GCP</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">CI/CD</span>
+                    <span class="tech-tag">Terraform</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section fade-in">
+        <div class="section-header">
+            <div class="section-badge">Our Work</div>
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-description">Explore our collection of successful projects and solutions we've delivered to clients worldwide.</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h4>Industrial IoT Platform</h4>
+                    <p>A comprehensive IoT solution for manufacturing plants with real-time monitoring and predictive maintenance.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h4>E-Learning Platform</h4>
+                    <p>Custom learning management system with AI-powered recommendations for educational institutions.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h4>Healthcare Analytics</h4>
+                    <p>Big data solution for hospitals to analyze patient data and improve treatment outcomes.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h4>AI Chatbot</h4>
+                    <p>Natural language processing chatbot for customer service automation across multiple industries.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h4>E-Commerce Platform</h4>
+                    <p>Custom-built online marketplace with personalized shopping experience and secure payments.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h4>Financial Analytics</h4>
+                    <p>Investment analysis platform with machine learning predictions and risk assessment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section fade-in">
+        <div class="section-header">
+            <div class="section-badge">Our Experts</div>
+            <h2 class="section-title">Meet The Team</h2>
+            <p class="section-description">The brilliant minds behind our innovative solutions and exceptional service delivery.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h4 class="member-name">Dr. Rajesh Sharma</h4>
+                <p class="member-role">Founder & CEO</p>
+                <p>PhD in Computer Science with 25+ years of industry experience in enterprise solutions.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h4 class="member-name">Priya Patel</h4>
+                <p class="member-role">CTO</p>
+                <p>Technology visionary specializing in AI and cloud architectures with 15 years of leadership.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h4 class="member-name">Amit Kumar</h4>
+                <p class="member-role">Head of Hardware</p>
+                <p>Embedded systems expert with extensive experience in IoT and semiconductor design.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h4 class="member-name">Neha Gupta</h4>
+                <p class="member-role">EduTech Director</p>
+                <p>Education technology specialist developing cutting-edge learning solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section fade-in">
+        <div class="section-header">
+            <div class="section-badge">Our Legacy</div>
+            <h2 class="section-title">About IMTDA Infotech</h2>
+            <p class="section-description">A journey of technological excellence spanning decades of innovation and service.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3>Our History</h3>
+                <p>Founded in 1995, IMTDA Infotech began as a small research lab focused on embedded systems and has grown into a full-service technology solutions provider.</p>
+                <ul class="service-features">
+                    <li>Established: 1995</li>
+                    <li>First Product: Industrial Controller</li>
+                    <li>Expansion: 5 countries</li>
+                    <li>Employees: 250+</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>Achievements</h3>
+                <p>Recognized for excellence in technology innovation and service delivery across multiple industries.</p>
+                <ul class="service-features">
+                    <li>Technology Excellence Award 2020</li>
+                    <li>Top 100 IT Companies (2021)</li>
+                    <li>Best Workplace Award 2019</li>
+                    <li>5-Star Client Satisfaction</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Partnerships</h3>
+                <p>Strategic alliances with global technology leaders to deliver cutting-edge solutions.</p>
+                <ul class="service-features">
+                    <li>Microsoft Gold Partner</li>
+                    <li>AWS Advanced Consulting</li>
+                    <li>Cisco Solution Partner</li>
+                    <li>Google Cloud Partner</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section fade-in">
+        <div class="section-header">
+            <div class="section-badge">Get In Touch</div>
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-description">Reach out to discuss your project requirements or learn more about our services.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h4>Our Offices</h4>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h5>Headquarters</h5>
+                        <p>Tech Park, Sector 62, Noida, India</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h5>Phone</h5>
+                        <p>+91 98765 43210</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>Email</h5>
+                        <p>info@imtdainfotech.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h5>Working Hours</h5>
+                        <p>Mon-Fri: 9AM - 6PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="What's this about?">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service">
+                            <option value="">Select a service</option>
+                            <option value="service">Service Solutions</option>
+                            <option value="product">Product Development</option>
+                            <option value="edutech">EduTech Programs</option>
+                            <option value="custom">Custom Solutions</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Tell us about your project"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>IMTDA Infotech</h4>
+                <p>Delivering vintage excellence in modern technology solutions since 1995.</p>
+                <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+                    <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#technologies">Technologies</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Service Solutions</a></li>
+                    <li><a href="#">Product Development</a></li>
+                    <li><a href="#">EduTech Programs</a></li>
+                    <li><a href="#">Custom Solutions</a></li>
+                    <li><a href="#">Consulting</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe to our newsletter for the latest updates and insights.</p>
+                <form style="margin-top: 1rem;">
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <input type="email" placeholder="Your email address" style="width: 100%;">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-envelope"></i>
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 IMTDA Infotech Pvt Ltd. All Rights Reserved. | <a href="#" style="color: var(--primary-gold);">Privacy Policy</a> | <a href="#" style="color: var(--primary-gold);">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
